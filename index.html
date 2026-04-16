@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/webp" href="/favicon.webp" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Studor - PathCredit Logger</title>
+  <!-- We'll import Inter font and Lucide JS for icons -->
+  <link rel="stylesheet" href="/src/style.css" />
+  <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+
+<body>
+  <div class="app-container">
+    <div class="content-wrapper">
+
+      <header class="page-header">
+        <img src="/logo.png" alt="Studor Logo" class="logo" onerror="this.style.display='none'" />
+        <h1>PathCredit Logger</h1>
+      </header>
+
+      <div class="main-grid">
+
+        <!-- Left Column: Form -->
+        <div class="form-container">
+          <div class="card form-card">
+            <h2>Log New Activity</h2>
+            <form id="activity-form">
+
+              <label class="input-group">
+                <span>Activity Name</span>
+                <input type="text" id="input-name" required placeholder="e.g. React Workshop" />
+              </label>
+
+              <label class="input-group">
+                <span>Category</span>
+                <select id="select-category">
+                  <option value="Academic">Academic</option>
+                  <option value="Technical">Technical</option>
+                  <option value="Cultural">Cultural</option>
+                  <option value="Sports">Sports</option>
+                </select>
+              </label>
+
+              <label class="input-group">
+                <span>Date</span>
+                <input type="date" id="input-date" required />
+              </label>
+
+              <label class="input-group">
+                <span>Description</span>
+                <textarea
+                  id="input-description"
+                  rows="4"
+                  placeholder="Add details about this activity..."
+                ></textarea>
+              </label>
+
+              <label class="input-group">
+                <span>Images</span>
+                <input type="file" id="input-images" accept="image/*" multiple />
+                <small class="input-help">Optional : Upload upto 2 images for this log. Max size: 5MB </small>
+              </label>
+
+              <label class="input-group">
+                <span>Certificate / Document</span>
+                <input
+                  type="file"
+                  id="input-certificate"
+                  accept=".pdf,.jpg,.jpeg,.png,.webp,.doc,.docx"
+                />
+                <small class="input-help">Optional certificate or supporting document.</small>
+              </label>
+
+              <div class="attachment-summary hidden" id="attachment-summary"></div>
+
+              <div class="form-actions">
+                <button type="submit" class="btn-submit">
+                  <i data-lucide="plus"></i>
+                  Log Activity
+                </button>
+                <button type="button" class="btn-cancel-edit hidden" id="cancel-edit-btn">
+                  Cancel
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+
+        <!-- Right Column: Feed -->
+        <div class="feed-container">
+          <div class="card feed-card">
+            <div class="feed-header">
+              <h2>Activity Feed</h2>
+              <div class="filter-wrapper">
+                <i data-lucide="filter" class="filter-icon"></i>
+                <select id="filter-select">
+                  <option value="All">All Categories</option>
+                  <option value="Academic">Academic</option>
+                  <option value="Technical">Technical</option>
+                  <option value="Cultural">Cultural</option>
+                  <option value="Sports">Sports</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="activity-list" id="activity-list">
+              <!-- Activities will be injected here via JS -->
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- Delete confirmation dialog -->
+  <div id="confirm-modal" class="modal-overlay" aria-hidden="true">
+    <div class="modal-dialog" role="dialog" aria-modal="true" aria-labelledby="confirm-modal-title">
+      <div class="modal-icon">
+        <i data-lucide="alert-triangle"></i>
+      </div>
+      <h2 id="confirm-modal-title">Delete activity?</h2>
+      <p class="modal-text">
+        This will permanently remove the log from your activity feed. You can’t undo this action.
+      </p>
+      <div class="modal-actions">
+        <button type="button" class="btn-secondary" id="confirm-cancel-btn">
+          Cancel
+        </button>
+        <button type="button" class="btn-danger" id="confirm-delete-btn">
+          <i data-lucide="trash-2"></i>
+          Delete
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div id="details-modal" class="modal-overlay" aria-hidden="true">
+    <div class="modal-dialog" role="dialog" aria-modal="true" aria-labelledby="details-modal-title">
+      <div class="modal-icon modal-icon-neutral">
+        <i data-lucide="file-text"></i>
+      </div>
+      <h2 id="details-modal-title">Activity Details</h2>
+      <p class="modal-text" id="details-modal-date"></p>
+      <div class="details-body">
+        <h3 id="details-modal-name"></h3>
+        <span class="badge" id="details-modal-category"></span>
+        <p id="details-modal-description"></p>
+        <div class="details-section hidden" id="details-images-section">
+          <h4>Images</h4>
+          <div class="details-image-grid" id="details-images"></div>
+        </div>
+        <div class="details-section hidden" id="details-certificate-section">
+          <h4>Certificate / Document</h4>
+          <button type="button" id="details-certificate-link" class="details-file-link"></button>
+        </div>
+      </div>
+      <div class="modal-actions">
+        <button type="button" class="btn-secondary" id="details-close-btn">
+          Close
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div id="image-preview-modal" class="modal-overlay" aria-hidden="true">
+    <div class="image-preview-dialog" role="dialog" aria-modal="true" aria-labelledby="image-preview-title">
+      <div class="image-preview-header">
+        <h2 id="image-preview-title">Image Preview</h2>
+        <button type="button" class="btn-secondary" id="image-preview-close-btn">Close</button>
+      </div>
+      <img id="image-preview-content" src="" alt="Activity attachment preview" />
+    </div>
+  </div>
+
+  <div id="document-preview-modal" class="modal-overlay" aria-hidden="true">
+    <div class="document-preview-dialog" role="dialog" aria-modal="true" aria-labelledby="document-preview-title">
+      <div class="image-preview-header">
+        <h2 id="document-preview-title">Document Preview</h2>
+        <button type="button" class="btn-secondary" id="document-preview-close-btn">Close</button>
+      </div>
+      <iframe id="document-preview-frame" title="Document preview"></iframe>
+      <div id="document-preview-fallback" class="document-preview-fallback hidden">
+        <p>This file type can’t be previewed here.</p>
+        <a id="document-preview-download" class="details-file-link" target="_blank" rel="noopener noreferrer">Open document</a>
+      </div>
+    </div>
+  </div>
+
+  <script type="module" src="/src/main.js"></script>
+</body>
+
+</html>
