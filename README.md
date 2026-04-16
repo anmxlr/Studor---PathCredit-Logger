@@ -1,62 +1,97 @@
-# 🎓 PathCredit Logger for Studor
+# 🚀 PathCredit Logger for Studor
 
-A robust, modern, single-page React application designed to help users log their personal milestones, events, and extra-curricular activities efficiently. Developed natively with a clean, Studor-inspired brand identity.
+[![Vite](https://img.shields.io/badge/Vite-B73BFE?style=for-the-badge&logo=vite&logoColor=FFD62E)](https://vitejs.dev/)
+[![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
+[![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white)](https://developer.mozilla.org/en-US/docs/Web/CSS)
+[![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white)](https://developer.mozilla.org/en-US/docs/Web/HTML)
 
-## ✨ Features
+**PathCredit Logger** is a professional, high-performance single-page application built for **Studor** to track academic, technical, cultural, and sports milestones. It provides a clean and intuitive interface for logging activities with rich media support and persistent local storage.
 
-- **Activity Form**: Easily log activities providing a customized Name, Category, and Date.
-- **Dynamic Activity Feed**: A list view populated automatically upon logging, showcasing color-coded category badges.
-- **Live Filtering**: Sort through your events via a dropdown menu containing categories like Academic, Technical, Cultural, and Sports.
-- **Offline Persistence**: The app leverages browser `localStorage` ensuring your path data doesn't disappear when you refresh the page.
-- **Premium UI/UX**: Built with hover micro-interactions, custom icons, an elegant "Empty State," and soft shadows.
+---
 
-## 🛠️ Tech Stack
+## ✨ Key Features
 
-- **Framework**: [React](https://react.dev/) + [Vite](https://vitejs.dev/) to guarantee blazing fast load times.
-- **Styling**: [Tailwind CSS v3](https://tailwindcss.com/) for strict component-level UI designs.
-- **Icons**: [Lucide React](https://lucide.dev/) for crisp, scalable vectors. 
+- **📝 Comprehensive Logging**: Record activity names, categories, dates, and detailed descriptions.
+- **🖼️ Media Attachments**: Support for up to **2 images** per log for visual proof.
+- **📄 Document Support**: Attach certificates or supporting documents (PDF, Image, Word).
+- **🔍 Smart Filtering**: Organize and view your feed by categories: *Academic, Technical, Cultural, Sports*.
+- **⚡ Performance First**: Built with Vanilla JS and Vite for lightning-fast interactions and zero bloat.
+- **💾 Local Persistence**: All data is saved directly in your browser's `localStorage`—no backend required.
+- **🛡️ Custom Modals**: Tailored UI for delete confirmations, activity details, and media previews.
+- **📱 Responsive Design**: A premium, mobile-friendly interface with sleek animations and micro-interactions.
+
+---
+
+## 🛠️ Project Structure
+
+```text
+Studor/
+├── public/              # Static assets (logos, icons)
+├── src/
+│   ├── main.js         # Core application logic & state management
+│   └── style.css       # Design system and component styling
+├── index.html          # Main entry point & layout
+├── package.json        # Project dependencies and scripts
+└── README.md           # Project documentation
+```
 
 ---
 
 ## 🚀 Getting Started
 
-If you dragged this project onto a new computer or just downloaded it, follow these steps to get your app running in under a minute.
-
 ### Prerequisites
-Make sure you have [Node.js](https://nodejs.org/) installed on your computer.
 
-### 1. Install Dependencies
-Open your terminal inside the `Studor` folder and run:
-```bash
-npm install
-```
-*(This downloads all the necessary code tools to make the app work).*
+- [Node.js](https://nodejs.org/) (Latest LTS recommended)
 
-### 2. Start the Development Server
+### Installation
+
+1. Clone the repository:
+   ```bash
+   git clone <repository-url>
+   ```
+2. Install dependencies:
+   ```bash
+   npm install
+   ```
+
+### Development
+
+Start the development server with Hot Module Replacement (HMR):
 ```bash
 npm run dev
 ```
-Open the `http://localhost:5173` link printed in your terminal in your browser (like Chrome or Safari).
 
----
+### Production
 
-## 📱 How to View on Your Phone or Another Computer (Same Wi-Fi)
-
-To view the logger on another device that shares the same network:
-1. In your terminal, stop the current server (press `Ctrl + C`).
-2. Run this networking command instead:
-```bash
-npm run dev -- --host
-```
-3. Look at your terminal for a link that says **Network** (e.g., `http://192.168.1.100:5173/`). Type that exact URL into your mobile device.
-
----
-
-## 🏗️ Building for Production
-
-Ready to share your platform with the world? You can bundle the app so it's optimized and ready to upload to a web host (like Vercel, Netlify, or GitHub Pages):
-
+Build the optimized application for deployment:
 ```bash
 npm run build
 ```
-This generates a `dist` directory with all of the finalized HTML/CSS/JS ready to deploy!
+
+---
+
+## 📖 Using the App
+
+1. **Log Activity**: Fill out the form on the left. You can add a description and attach images or documents.
+2. **Review Feed**: Your activities appear on the right. Use the filter dropdown to narrow down specific categories.
+3. **View Details**: Click on any activity card to open a full details view with high-res previews of attachments.
+4. **Manage Logs**: Use the **Edit** (pencil) or **Delete** (trash) icons to modify or remove entries. Deleting requires a custom confirmation.
+
+---
+
+## 🔒 Data & Privacy
+
+- **Local Storage**: All your logged data, including base64-encoded images and documents, is stored in your browser's `localStorage`.
+- **Privacy**: No data is sent to any server. Your milestones stay on your device.
+- **Storage Limits**: Note that `localStorage` has a limit (typically ~5MB-10MB). Attaching many large images may eventually clear the storage or cause errors.
+
+---
+
+## 🎨 Design System
+
+The application utilizes a curated color palette and a modern typography system based on the **Inter** font family. Icons are powered by **Lucide** for a consistent and clean aesthetic.
+
+---
+
+Developed for **Studor** Milestone tracking.
+

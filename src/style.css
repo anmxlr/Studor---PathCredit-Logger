@@ -203,6 +203,30 @@ form {
   transform: scale(0.98);
 }
 
+.btn-remove-attachment {
+  margin-top: 0.5rem;
+  width: fit-content;
+  padding: 0.4rem 0.65rem;
+  border-radius: 0.5rem;
+  border: 1px solid var(--color-border);
+  background: #fff;
+  color: #b91c1c;
+  font-family: inherit;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.15s, color 0.15s, border-color 0.15s, transform 0.1s;
+}
+
+.btn-remove-attachment:hover {
+  background: #fef2f2;
+  border-color: #fecaca;
+}
+
+.btn-remove-attachment:active {
+  transform: scale(0.98);
+}
+
 .hidden {
   display: none;
 }
@@ -553,6 +577,10 @@ form {
   border: 1px dashed var(--color-border);
   border-radius: 0.75rem;
   background: var(--color-gray-50);
+}
+
+.document-preview-fallback.hidden {
+  display: none;
 }
 
 .modal-icon {

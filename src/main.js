@@ -30,6 +30,8 @@ const inputDate = document.getElementById('input-date');
 const inputDescription = document.getElementById('input-description');
 const inputImages = document.getElementById('input-images');
 const inputCertificate = document.getElementById('input-certificate');
+const removeImagesButton = document.getElementById('remove-images-btn');
+const removeCertificateButton = document.getElementById('remove-certificate-btn');
 const filterSelect = document.getElementById('filter-select');
 const activityList = document.getElementById('activity-list');
 const submitButton = form.querySelector('.btn-submit');
@@ -209,11 +211,27 @@ function clearAttachmentInputs() {
   inputCertificate.value = '';
 }
 
+function updateRemoveImagesButton() {
+  const hasSelectedImages = selectedImageFiles.length > 0;
+  const hasExistingImages = editingImages.length > 0;
+  const shouldShow = Boolean(editingId) && (hasSelectedImages || hasExistingImages);
+  removeImagesButton.classList.toggle('hidden', !shouldShow);
+}
+
+function updateRemoveCertificateButton() {
+  const hasSelectedCertificate = Boolean(inputCertificate.files?.[0]);
+  const hasExistingCertificate = Boolean(editingCertificate);
+  const shouldShow = Boolean(editingId) && (hasSelectedCertificate || hasExistingCertificate);
+  removeCertificateButton.classList.toggle('hidden', !shouldShow);
+}
+
 function setFormMode(isEditing) {
   formTitle.textContent = isEditing ? EDIT_FORM_TITLE : DEFAULT_FORM_TITLE;
   submitButton.innerHTML = isEditing ? EDIT_SUBMIT_LABEL : DEFAULT_SUBMIT_LABEL;
   cancelEditButton.classList.toggle('hidden', !isEditing);
   updateAttachmentSummary();
+  updateRemoveImagesButton();
+  updateRemoveCertificateButton();
   renderIcons();
 }
 
@@ -576,10 +594,37 @@ function handleImageSelection() {
   inputImages.value = '';
 
   updateAttachmentSummary();
+  updateRemoveImagesButton();
 }
 
 function handleCertificateSelection() {
   updateAttachmentSummary();
+  updateRemoveCertificateButton();
+}
+
+function handleRemoveImages() {
+  if (selectedImageFiles.length > 0) {
+    selectedImageFiles = [];
+  } else {
+    editingImages = [];
+  }
+
+  inputImages.value = '';
+  updateAttachmentSummary();
+  updateRemoveImagesButton();
+}
+
+function handleRemoveCertificate() {
+  const hasSelected = Boolean(inputCertificate.files?.[0]);
+
+  if (hasSelected) {
+    inputCertificate.value = '';
+  } else {
+    editingCertificate = null;
+  }
+
+  updateAttachmentSummary();
+  updateRemoveCertificateButton();
 }
 
 function updateAttachmentSummary() {
@@ -617,6 +662,8 @@ function attachEventListeners() {
   cancelEditButton.addEventListener('click', resetForm);
   inputImages.addEventListener('change', handleImageSelection);
   inputCertificate.addEventListener('change', handleCertificateSelection);
+  removeImagesButton.addEventListener('click', handleRemoveImages);
+  removeCertificateButton.addEventListener('click', handleRemoveCertificate);
   confirmDeleteButton.addEventListener('click', deletePendingActivity);
   confirmCancelButton.addEventListener('click', closeConfirmModal);
   confirmModal.addEventListener('click', handleModalBackdropClick);
