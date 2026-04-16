@@ -87,11 +87,5 @@ npm run build
 
 ---
 
-## 🎨 Design System
-
-The application utilizes a curated color palette and a modern typography system based on the **Inter** font family. Icons are powered by **Lucide** for a consistent and clean aesthetic.
-
----
-
 Developed for **Studor** Milestone tracking.
 
