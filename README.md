@@ -87,5 +87,5 @@ npm run build
 
 ---
 
-Developed for **Studor** Milestone tracking.
+Developed for **Studor**.
 
