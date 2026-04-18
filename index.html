@@ -6,7 +6,6 @@
   <link rel="icon" type="image/webp" href="/favicon.webp" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Studor - PathCredit Logger</title>
-  <!-- We'll import Inter font and Lucide JS for icons -->
   <link rel="stylesheet" href="/src/style.css" />
   <script src="https://unpkg.com/lucide@latest"></script>
 </head>
@@ -29,13 +28,20 @@
             <form id="activity-form">
 
               <label class="input-group">
-                <span>Activity Name</span>
+                <div class="input-group-header">
+                  <span>Activity Name</span>
+                  <span class="required-mark" title="This field is required">*</span>
+                </div>
                 <input type="text" id="input-name" required placeholder="e.g. React Workshop" />
               </label>
 
               <label class="input-group">
-                <span>Category</span>
-                <select id="select-category">
+                <div class="input-group-header">
+                  <span>Category</span>
+                  <span class="required-mark" title="This field is required">*</span>
+                </div>
+                <select id="select-category" required>
+                  <option value="" disabled selected>Select Category</option>
                   <option value="Academic">Academic</option>
                   <option value="Technical">Technical</option>
                   <option value="Cultural">Cultural</option>
@@ -44,17 +50,16 @@
               </label>
 
               <label class="input-group">
-                <span>Date</span>
+                <div class="input-group-header">
+                  <span>Date</span>
+                  <span class="required-mark" title="This field is required">*</span>
+                </div>
                 <input type="date" id="input-date" required />
               </label>
 
               <label class="input-group">
                 <span>Description</span>
-                <textarea
-                  id="input-description"
-                  rows="4"
-                  placeholder="Add details about this activity..."
-                ></textarea>
+                <textarea id="input-description" rows="4" placeholder="Add details about this activity..."></textarea>
               </label>
 
               <label class="input-group">
@@ -68,11 +73,7 @@
 
               <label class="input-group">
                 <span>Certificate / Document</span>
-                <input
-                  type="file"
-                  id="input-certificate"
-                  accept=".pdf,.jpg,.jpeg,.png,.webp,.doc,.docx"
-                />
+                <input type="file" id="input-certificate" accept=".pdf,.jpg,.jpeg,.png,.webp,.doc,.docx" />
                 <small class="input-help">Optional certificate or supporting document.</small>
                 <button type="button" class="btn-remove-attachment hidden" id="remove-certificate-btn">
                   Remove document
@@ -190,7 +191,8 @@
       <iframe id="document-preview-frame" title="Document preview"></iframe>
       <div id="document-preview-fallback" class="document-preview-fallback hidden">
         <p>This file type can’t be previewed here.</p>
-        <a id="document-preview-download" class="details-file-link" target="_blank" rel="noopener noreferrer">Open document</a>
+        <a id="document-preview-download" class="details-file-link" target="_blank" rel="noopener noreferrer">Open
+          document</a>
       </div>
     </div>
   </div>
