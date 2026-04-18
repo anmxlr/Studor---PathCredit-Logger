@@ -87,5 +87,20 @@ npm run build
 
 ---
 
+## 🔮 Future Roadmap
+
+To further enhance the PathCredit Logger, the following features could be implemented:
+
+- **🔐 User Authentication**: Enable secure logins to sync activity logs across multiple devices and browsers.
+- **📊 Analytics Dashboard**: Visual charts and graphs to track progress and activity distribution over time.
+- **☁️ Cloud Storage**: Transition from `localStorage` to a cloud-based database (like Firebase) for limitless storage of attachments.
+- **📥 Export Options**: Download your activity feed as a professional PDF report or CSV for external use.
+- **🌙 Dark Mode**: A sleek dark theme option for better accessibility and night-time use.
+- **🔍 Advanced Search**: Real-time search functionality to quickly find specific logs by keywords.
+- **🎯 Milestone Goals**: Set and track specific targets/goals for each category.
+- **🌍 Social Sharing**: Ability to share achievements or certificates directly to social profiles or via email.
+
+---
+
 Developed for **Studor**.
 
